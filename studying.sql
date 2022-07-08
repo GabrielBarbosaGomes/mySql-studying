@@ -36,5 +36,33 @@ ALTER TABLE `pessoas` ADD `genero` VARCHAR(1) NOT NULL AFTER `nascimento`;
 
 SELECT COUNT(ID), genero FROM pessoas GROUP BY genero; /* nesse caso vai me passar a quantidade de id que cada genero possui*/
 
+/* juntar tabelas */
+
+SELECT * FROM videos_canais JOIN videos /* nesse caso o JOIN faz a tabela videos_canais juntar com a tabela videos */
+SELECT * FROM videos_canais JOIN videos ON videos_canais.fk_video = videos.id_video /* nesse caso com o uso do ON, sera comparado a coluna fk_video da tabela videos_canais com a coluna id_videos da tabela videos, porem viran junto o restanters das informações das tabelas em que os id forem iguais */
+SELECT * FROM videos_canais AS vc JOIN videos AS v ON vc.fk_video = v.id_video /* nesse formado com o uso do AS podemos abreviar o nome das tabelas*/
+JOIN canais AS c ON vc.fk_canal = id_canal
+
+SELECT v.nome_video, v.autor_video, c.nome_canal FROM videos_canais AS vc JOIN videos AS v ON vc.fk_video = v.id_video/* nesse formato, a busca vem selecionada e aparecera somente as colunas informadas */
+JOIN canais AS c ON vc.fk_canal = id_canal
+SELECT v.nome_video, v.autor_video, c.nome_canal FROM videos_canais AS vc RIGHT OUTER JOIN videos AS v ON vc.fk_video = v.id_video/* JOIN ou INNER JOIN nao apresentara os itens que nao tem relacionamento, para isso se usa o OUTER JOIN informando a direção de onde vai ficar a informação que tem relacionamento null, left||right */
+
+/* usando Union*/
+
+SELECT * FROM v.id_video, v.nome_video FROM videos AS v LEFT OUTER JOIN videos_canais AS vc ON v.id_video = vc.fk_video /* A UNION precisa que as colunas das tabelas unidas sejam de quantidade iguais */
+UNION
+SELECT * FROM c.id_canal, c.nome_canal FROM videos_canais AS vc RIGHT OUTER JOIN canais AS c ON vc.fk_canal = c.id_canal 
+
+/* Inserindo dados em tabela relacionada*/
+
+SELECT * FROM videos_canais JOIN videos ON videos_canais.fk_video = videos.id_video
+Join canais ON videos_canais.fk_canal = canais.id_canal
+
+/* consultas em items específicos de tabelas relacionadas*/
+
+SELECT * FROM videos_canais JOIN videos ON videos_canais.fk_video = videos.id_video
+Join canais ON videos_canais.fk_canal = canais.id_canal
+WHERE canais.id_canal = 2 /*ele apresentara somente os dados que o id for igual a 2 das tabelas relacionadas*/
+
 /*comando para da enter no sql*/
 Ctrl + Enter
