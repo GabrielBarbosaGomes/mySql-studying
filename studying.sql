@@ -75,3 +75,4 @@ R = read = SELECT
 U = update = UPDATE
 D = delete = DELETE
 
+para remover TABELA usamos: DROP TABLE nome da tabela;
