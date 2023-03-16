@@ -66,3 +66,12 @@
 
 /*comando para da enter no sql*/
     Ctrl + Enter
+    
+    
+/* CRUD do SQL */
+
+C = creat = INSERT
+R = read = SELECT
+U = update = UPDATE
+D = delete = DELETE
+
